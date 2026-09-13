@@ -1,5 +1,6 @@
 import { ArrowRight, Check, Clock3, Database, MailCheck, ShieldCheck, Sparkles, Target, UserCheck, X } from "lucide-react";
 import { AuditForm } from "@/components/audit-form";
+import { MobileStickyCta } from "@/components/mobile-sticky-cta";
 import { PslDeck } from "@/components/psl-deck";
 
 const systemItems = [
@@ -233,12 +234,21 @@ export default function Home() {
 
       <section className="section founder-section">
         <div className="page-shell founder-card">
-          <div className="founder-label">FOUNDING<br/>PARTNERS</div>
+          <div className="pilot-card" aria-label="Three pilot places available">
+            <span>EARLY-CLIENT PILOT</span>
+            <strong>3</strong>
+            <p>places available</p>
+            <small>Lower pilot pricing<br/>+ direct implementation support</small>
+          </div>
           <div>
-            <span className="section-number">LIMITED PILOT AVAILABILITY</span>
-            <h2>Help us document the next recovery story.</h2>
-            <p>We are currently accepting a small number of established service businesses into our founding-client programme. Each system is built and monitored personally. In exchange for candid feedback and permission to document the results, founding partners receive preferential pilot pricing and additional implementation support.</p>
-            <p className="honesty-line">No manufactured testimonials. No exaggerated projections. No campaign unless the numbers support it.</p>
+            <span className="section-number">WHY THE PILOT EXISTS</span>
+            <h2>Get the full system at a lower pilot price.</h2>
+            <p>We are building the first case studies for this offer. The first three suitable businesses receive lower pricing and extra hands-on support. In return, we ask for honest feedback and—only if the results are worth sharing—permission to publish an anonymised case study.</p>
+            <div className="pilot-terms">
+              <span><Check size={17}/> Full implementation</span>
+              <span><Check size={17}/> 45 days of optimisation</span>
+              <span><Check size={17}/> No invented results or testimonials</span>
+            </div>
           </div>
         </div>
       </section>
@@ -284,7 +294,7 @@ export default function Home() {
         </div>
       </footer>
 
-      <a className="mobile-sticky" href="#audit">Get my free audit <ArrowRight size={17}/></a>
+      <MobileStickyCta />
     </main>
   );
 }

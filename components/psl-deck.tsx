@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowLeft, ArrowRight, Check, Clock3, Database, MailCheck, Target, UserCheck } from "lucide-react";
+import { TouchEvent, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, CalendarCheck, Check, Clock3, Database, MailCheck, MessageSquareText, Search, Target, UserCheck } from "lucide-react";
 
 const slides = [
   {
@@ -49,20 +49,95 @@ const slides = [
 ];
 
 function SlideVisual({ type }: { type: string }) {
-  if (type === "math") return <div className="slide-math"><span>100 leads</span><b>×</b><span>3 recovered</span><b>=</b><strong>€6K</strong></div>;
-  if (type === "leaks") return <div className="leak-list"><span>NEW ENQUIRY <i>waiting</i></span><span>APPOINTMENT <i>no-show</i></span><span>PROPOSAL <i>quiet</i></span></div>;
-  if (type === "system") return <div className="slide-icons"><Database/><ArrowRight/><MailCheck/><ArrowRight/><UserCheck/></div>;
-  if (type === "build") return <div className="build-visual"><Clock3/><strong>10</strong><span>business days<br/>to launch</span></div>;
-  if (type === "audit") return <div className="audit-visual"><Target/><span><Check/> Database opportunity</span><span><Check/> Follow-up gaps</span><span><Check/> Recovery map</span></div>;
-  return <div className="hook-visual"><span>MORE LEADS</span><div/><strong>BETTER FOLLOW-UP</strong></div>;
+  if (type === "math") return (
+    <div className="slide-math">
+      <div className="lead-grid" aria-hidden="true">{Array.from({ length: 20 }, (_, index) => <i className={index < 3 ? "recovered" : ""} key={index}/>)}</div>
+      <div className="math-equation"><span>3 additional clients</span><b>× €2,000</b><strong>€6,000</strong><small>illustrative potential value</small></div>
+    </div>
+  );
+  if (type === "leaks") return (
+    <div className="leak-list">
+      <span><MessageSquareText/><b>New enquiry</b><i>slow response</i></span>
+      <span><CalendarCheck/><b>Appointment</b><i>no-show</i></span>
+      <span><Target/><b>Consultation</b><i>no follow-up</i></span>
+    </div>
+  );
+  if (type === "system") return (
+    <div className="system-visual">
+      <span><Database/><b>Reactivate</b></span><ArrowRight/>
+      <span><MailCheck/><b>Nurture</b></span><ArrowRight/>
+      <span><UserCheck/><b>Book</b></span>
+      <div className="system-loop">Every lead gets a defined next step</div>
+    </div>
+  );
+  if (type === "build") return (
+    <div className="build-visual">
+      <div><small>Days 1–3</small><Search/><b>Audit & map</b></div>
+      <div><small>Days 4–7</small><MessageSquareText/><b>Build & approve</b></div>
+      <div><small>Days 8–10</small><Clock3/><b>Launch</b></div>
+    </div>
+  );
+  if (type === "audit") return (
+    <div className="audit-visual">
+      <div className="report-head"><Target/><span><b>Lead Leakage Audit</b><small>Opportunity report</small></span></div>
+      <span><Check/> Database opportunity</span><span><Check/> Follow-up gaps</span><span><Check/> Recommended recovery map</span>
+      <strong>GO / NO-GO RECOMMENDATION</strong>
+    </div>
+  );
+  return (
+    <div className="hook-visual">
+      <div><span>01</span><b>Lead acquired</b><small>Money spent</small></div>
+      <ArrowRight/>
+      <div className="lost-step"><span>02</span><b>Follow-up stops</b><small>Opportunity lost</small></div>
+      <div className="recovery-path"><MailCheck/><b>Recovery system</b><small>Continue until a decision</small></div>
+    </div>
+  );
 }
 
 export function PslDeck() {
   const [active, setActive] = useState(0);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
   const slide = slides[active];
 
+  function previous() {
+    setActive((n) => Math.max(0, n - 1));
+  }
+
+  function next() {
+    setActive((n) => Math.min(slides.length - 1, n + 1));
+  }
+
+  function onTouchStart(event: TouchEvent<HTMLDivElement>) {
+    const touch = event.changedTouches[0];
+    touchStart.current = { x: touch.clientX, y: touch.clientY };
+  }
+
+  function onTouchEnd(event: TouchEvent<HTMLDivElement>) {
+    if (!touchStart.current) return;
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - touchStart.current.x;
+    const deltaY = touch.clientY - touchStart.current.y;
+    touchStart.current = null;
+
+    if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+    if (deltaX < 0) next();
+    else previous();
+  }
+
   return (
-    <div className="psl-deck" aria-live="polite">
+    <div
+      className="psl-deck"
+      role="region"
+      aria-label="Lead Recovery Briefing carousel"
+      aria-live="polite"
+      tabIndex={0}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      onKeyDown={(event) => {
+        if (event.key === "ArrowLeft") previous();
+        if (event.key === "ArrowRight") next();
+      }}
+    >
       <div className="deck-topline">
         <span>THE LEAD RECOVERY BRIEFING</span>
         <span>{String(active + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}</span>
@@ -78,12 +153,13 @@ export function PslDeck() {
         <div className="slide-visual"><SlideVisual type={slide.visual}/></div>
       </div>
       <div className="deck-controls">
-        <button aria-label="Previous slide" disabled={active === 0} onClick={() => setActive((n) => Math.max(0, n - 1))}><ArrowLeft/></button>
+        <button aria-label="Previous slide" disabled={active === 0} onClick={previous}><ArrowLeft/></button>
         <div className="progress-dots" aria-label={`Slide ${active + 1} of ${slides.length}`}>
           {slides.map((_, index) => <button key={index} aria-label={`Go to slide ${index + 1}`} className={index === active ? "active" : ""} onClick={() => setActive(index)}/>) }
         </div>
-        <button aria-label="Next slide" disabled={active === slides.length - 1} onClick={() => setActive((n) => Math.min(slides.length - 1, n + 1))}><ArrowRight/></button>
+        <button aria-label="Next slide" disabled={active === slides.length - 1} onClick={next}><ArrowRight/></button>
       </div>
+      <span className="swipe-hint">Swipe left or right to change slides</span>
     </div>
   );
 }

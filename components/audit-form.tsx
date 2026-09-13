@@ -50,7 +50,7 @@ export function AuditForm() {
         </div>
       ) : (
         <div className="form-fields">
-          <div className="two-fields"><label>First name<input name="firstName" required placeholder="Gleb"/></label><label>Business name<input name="business" required placeholder="Your business"/></label></div>
+          <div className="two-fields"><label>First name<input name="firstName" required placeholder="Your first name"/></label><label>Business name<input name="business" required placeholder="Your business"/></label></div>
           <label>Website<input name="website" type="url" required placeholder="https://yourbusiness.com"/></label>
           <label>Work email<input name="email" type="email" required placeholder="you@yourbusiness.com"/></label>
           <label>Telephone number<input name="phone" type="tel" required placeholder="+31 6 1234 5678"/></label>

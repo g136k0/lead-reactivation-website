@@ -42,8 +42,8 @@ const slides = [
   {
     kicker: "The next step",
     title: <>See what’s hiding in your database.</>,
-    accent: <>Start with a free Lead Leakage Audit.</>,
-    body: "We’ll review your database, current follow-up and potential recovery opportunities—then tell you honestly whether the numbers justify a campaign.",
+    accent: <>Start with a free consultation.</>,
+    body: "We’ll discuss your database, current follow-up and potential recovery opportunities—then tell you honestly whether the numbers justify a campaign.",
     visual: "audit",
   },
 ];
@@ -72,14 +72,14 @@ function SlideVisual({ type }: { type: string }) {
   );
   if (type === "build") return (
     <div className="build-visual">
-      <div><small>Days 1–3</small><Search/><b>Audit & map</b></div>
+      <div><small>Days 1–3</small><Search/><b>Review & map</b></div>
       <div><small>Days 4–7</small><MessageSquareText/><b>Build & approve</b></div>
       <div><small>Days 8–10</small><Clock3/><b>Launch</b></div>
     </div>
   );
   if (type === "audit") return (
     <div className="audit-visual">
-      <div className="report-head"><Target/><span><b>Lead Leakage Audit</b><small>Opportunity report</small></span></div>
+      <div className="report-head"><Target/><span><b>Free consultation</b><small>Opportunity review</small></span></div>
       <span><Check/> Database opportunity</span><span><Check/> Follow-up gaps</span><span><Check/> Recommended recovery map</span>
       <strong>GO / NO-GO RECOMMENDATION</strong>
     </div>
@@ -148,7 +148,7 @@ export function PslDeck() {
           <h3>{slide.title}</h3>
           <h4>{slide.accent}</h4>
           <p>{slide.body}</p>
-          {active === slides.length - 1 && <a className="button button-accent" href="#audit">Get my free audit <ArrowRight size={18}/></a>}
+          {active === slides.length - 1 && <a className="button button-accent" href="#consultation">Book my free consultation <ArrowRight size={18}/></a>}
         </div>
         <div className="slide-visual"><SlideVisual type={slide.visual}/></div>
       </div>

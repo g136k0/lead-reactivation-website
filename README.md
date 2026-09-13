@@ -18,7 +18,7 @@ npm start
 
 ## Before launch
 
-- Connect the audit form in `components/audit-form.tsx` to your preferred form or CRM endpoint.
+- Add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` in Vercel before accepting consultation requests.
 - Add genuine case studies when available.
 - Add privacy and cookie notices appropriate to the markets you target.
 

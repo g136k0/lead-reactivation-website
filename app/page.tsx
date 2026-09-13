@@ -1,6 +1,6 @@
 import { ArrowRight, Check, Clock3, Database, MailCheck, ShieldCheck, Sparkles, Target, UserCheck, X } from "lucide-react";
 import Image from "next/image";
-import { AuditForm } from "@/components/audit-form";
+import { ConsultationForm } from "@/components/consultation-form";
 import { MobileStickyCta } from "@/components/mobile-sticky-cta";
 import { PslDeck } from "@/components/psl-deck";
 
@@ -14,7 +14,7 @@ const systemItems = [
 ];
 
 const included = [
-  "Lead database audit and cleanup",
+  "Lead database review and cleanup",
   "Behaviour-based lead segmentation",
   "Dormant-lead reactivation campaign",
   "New-lead response automation",
@@ -34,13 +34,13 @@ const faq = [
   ["Will my team need to learn new software?", "Usually not. We build around your existing tools where possible. Your team mainly handles interested prospects and appointments."],
   ["Will you send generic mass emails?", "No. Leads are segmented by service interest, previous activity and stage in the decision process so each message fits the reason they originally enquired."],
   ["How quickly can the system launch?", "Most systems can be prepared within approximately 10 business days after access and approvals are provided."],
-  ["What if my database is not suitable?", "We will tell you during the audit. We do not recommend launching when the data is too small, outdated, inappropriate or lacks the necessary permissions."],
+  ["What if my database is not suitable?", "We will tell you during the consultation. We do not recommend launching when the data is too small, outdated, inappropriate or lacks the necessary permissions."],
   ["Do you guarantee sales?", "No. Your team controls pricing, consultations and closing. We agree on a target based on qualified, attended appointments—the outcome our system is designed to influence directly."],
 ];
 
-function Cta({ label = "Get my free lead leakage audit", dark = false }: { label?: string; dark?: boolean }) {
+function Cta({ label = "Book my free consultation", dark = false }: { label?: string; dark?: boolean }) {
   return (
-    <a className={dark ? "button button-dark" : "button button-accent"} href="#audit">
+    <a className={dark ? "button button-dark" : "button button-accent"} href="#consultation">
       {label}<ArrowRight size={18} aria-hidden="true" />
     </a>
   );
@@ -58,7 +58,7 @@ export default function Home() {
           <a href="#process">Process</a>
           <a href="#faq">FAQ</a>
         </nav>
-        <a className="header-cta" href="#audit">Request audit <ArrowRight size={16} /></a>
+        <a className="header-cta" href="#consultation">Free consultation <ArrowRight size={16} /></a>
       </header>
 
       <section className="hero" id="top">
@@ -202,7 +202,7 @@ export default function Home() {
             <span className="section-number">THE 45-DAY PROMISE</span>
             <h2>We take responsibility for the part we control.</h2>
             <p>Before starting, we review your database and agree on a realistic target for qualified, attended appointments. If we miss it during the first 45 days, we waive the following management fee and continue improving the system free for up to another 45 days.</p>
-            <a className="text-link dark-link" href="#audit">Check if my business qualifies <ArrowRight size={17}/></a>
+            <a className="text-link dark-link" href="#consultation">Check if my business qualifies <ArrowRight size={17}/></a>
           </div>
         </div>
       </section>
@@ -257,7 +257,7 @@ export default function Home() {
         <div className="page-shell faq-grid">
           <div className="section-intro">
             <span className="section-number">06 / QUESTIONS</span>
-            <h2>Before you request an audit.</h2>
+            <h2>Before you book a consultation.</h2>
           </div>
           <div className="faq-list">
             {faq.map(([question, answer]) => (
@@ -270,19 +270,19 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section audit-section" id="audit">
+      <section className="section audit-section" id="consultation">
         <div className="page-shell audit-grid">
           <div className="audit-copy">
-            <span className="section-number">FREE LEAD LEAKAGE AUDIT</span>
-            <h2>Before you buy more leads, find out what happened to the old ones.</h2>
-            <p>Receive an assessment of your current follow-up, the likely conversion gaps and a map of the automations your business may be missing.</p>
+            <span className="section-number">FREE CONSULTATION</span>
+            <h2>Before you buy more leads, let’s look at the ones you already have.</h2>
+            <p>Tell us about your pipeline and choose a preferred time. We’ll discuss your current follow-up, the likely conversion gaps and whether a recovery campaign makes sense.</p>
             <div className="audit-benefits">
-              <span><Check size={16}/> Delivered within two business days</span>
-              <span><Check size={16}/> No obligation or generic sales deck</span>
+              <span><Check size={16}/> We’ll confirm your preferred time</span>
+              <span><Check size={16}/> No obligation or generic sales pitch</span>
               <span><Check size={16}/> Honest recommendation—even if we’re not a fit</span>
             </div>
           </div>
-          <AuditForm />
+          <ConsultationForm />
         </div>
       </section>
 

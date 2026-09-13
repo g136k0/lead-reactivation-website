@@ -1,4 +1,5 @@
 import { ArrowRight, Check, Clock3, Database, MailCheck, ShieldCheck, Sparkles, Target, UserCheck, X } from "lucide-react";
+import Image from "next/image";
 import { AuditForm } from "@/components/audit-form";
 import { MobileStickyCta } from "@/components/mobile-sticky-cta";
 import { PslDeck } from "@/components/psl-deck";
@@ -49,9 +50,8 @@ export default function Home() {
   return (
     <main>
       <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="Lead Recovery home">
-          <span className="wordmark-mark">LR</span>
-          <span>LEAD / RECOVERY</span>
+        <a className="wordmark" href="#top" aria-label="LeadRevive home">
+          <Image className="wordmark-logo" src="/leadrevive-logo-light.svg" width={200} height={40} alt="LeadRevive" priority />
         </a>
         <nav aria-label="Main navigation">
           <a href="#system">The system</a>
@@ -288,9 +288,8 @@ export default function Home() {
 
       <footer>
         <div className="page-shell footer-grid">
-          <div className="wordmark"><span className="wordmark-mark">LR</span><span>LEAD / RECOVERY</span></div>
-          <p>Placeholder brand and contact details. Built for service businesses that value every lead.</p>
-          <a href="mailto:hello@youragency.com">hello@youragency.com</a>
+          <div className="wordmark"><Image className="wordmark-logo" src="/leadrevive-logo-light.svg" width={200} height={40} alt="LeadRevive" /></div>
+          <p>Lead recovery systems for service businesses that value every enquiry.</p>
         </div>
       </footer>
 

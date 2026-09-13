@@ -18,8 +18,6 @@ npm start
 
 ## Before launch
 
-- Replace the placeholder brand in `app/page.tsx`.
-- Replace `hello@youragency.com`.
 - Connect the audit form in `components/audit-form.tsx` to your preferred form or CRM endpoint.
 - Add genuine case studies when available.
 - Add privacy and cookie notices appropriate to the markets you target.

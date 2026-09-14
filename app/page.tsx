@@ -216,7 +216,6 @@ export default function Home() {
               <li>Have at least 1,000 old leads</li>
               <li>Generate at least 50 new enquiries monthly</li>
               <li>Have capacity to handle more appointments</li>
-              <li>Have permission to contact your database</li>
             </ul>
           </div>
           <div className="fit-card">

@@ -72,7 +72,7 @@ export default function Home() {
               <Cta />
               <a className="text-link" href="#psl">See how it works <ArrowRight size={17} /></a>
             </div>
-            <p className="microcopy">No obligation. Clear recommendations. Delivered within two business days.</p>
+            <p className="microcopy">No obligation. Clear recommendations.</p>
           </div>
 
           <div className="pipeline-panel" aria-label="Illustrative lead recovery pipeline">

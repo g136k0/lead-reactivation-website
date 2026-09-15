@@ -1,9 +1,9 @@
 <svg width="480" height="96" viewBox="0 0 480 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">LeadRevive</title>
   <desc id="desc">LeadRevive wordmark with a returning arrow monogram.</desc>
-  <rect x="4" y="4" width="88" height="88" rx="24" fill="#111629"/>
-  <path d="M29 69V27H50C61.6 27 69 33.2 69 43C69 52.8 61.6 59 50 59H29" stroke="#FFFDF7" stroke-width="7" stroke-linecap="square" stroke-linejoin="round"/>
-  <path d="M50 58L68 70M68 70V59M68 70H57" stroke="#FF5C35" stroke-width="7" stroke-linecap="square" stroke-linejoin="round"/>
-  <text x="116" y="61" fill="#111629" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="760" letter-spacing="-1.8">LEAD</text>
-  <text x="224" y="61" fill="#B53624" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="760" letter-spacing="-1.8">REVIVE</text>
+  <rect x="4" y="4" width="88" height="88" rx="24" fill="#0D1426"/>
+  <path d="M29 69V27H50C61.6 27 69 33.2 69 43C69 52.8 61.6 59 50 59H29" stroke="#FEFCF7" stroke-width="7" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="M50 58L68 70M68 70V59M68 70H57" stroke="#9FD7E5" stroke-width="7" stroke-linecap="square" stroke-linejoin="round"/>
+  <text x="116" y="61" fill="#0D1426" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="760" letter-spacing="-1.8">LEAD</text>
+  <text x="224" y="61" fill="#26758A" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="760" letter-spacing="-1.8">REVIVE</text>
 </svg>

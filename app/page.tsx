@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ConsultationForm } from "@/components/consultation-form";
 import { MobileStickyCta } from "@/components/mobile-sticky-cta";
 import { PslDeck } from "@/components/psl-deck";
+import { EmailPopup } from "@/components/email-popup";
 
 const systemItems = [
   { icon: Database, title: "Dormant lead reactivation", text: "Restart conversations with old enquiries using segmented, relevant campaigns." },
@@ -293,6 +294,7 @@ export default function Home() {
       </footer>
 
       <MobileStickyCta />
+      <EmailPopup />
     </main>
   );
 }

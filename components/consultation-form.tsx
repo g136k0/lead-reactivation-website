@@ -156,7 +156,7 @@ export function ConsultationForm() {
       ) : (
         <div className="form-fields">
           <div className="two-fields"><label>First name<input name="firstName" required value={formData.firstName} onChange={update} placeholder="Your first name"/></label><label>Business name<input name="business" required value={formData.business} onChange={update} placeholder="Your business"/></label></div>
-          <label>Website<input name="website" type="url" required value={formData.website} onChange={update} placeholder="https://yourbusiness.com"/></label>
+          <label>Website<input name="website" type="text" inputMode="url" autoCapitalize="none" spellCheck={false} required value={formData.website} onChange={update} placeholder="yourbusiness.com"/></label>
           <label>Work email<input name="email" type="email" required value={formData.email} onChange={update} placeholder="you@yourbusiness.com"/></label>
           <label>Telephone number<input name="phone" type="tel" required value={formData.phone} onChange={update} placeholder="+31 6 1234 5678"/></label>
           {status === "error" && <p className="form-error" role="alert">Something went wrong. Please try again.</p>}

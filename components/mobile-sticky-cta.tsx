@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
 export function MobileStickyCta() {
-  const [heroCtaVisible, setHeroCtaVisible] = useState(true);
+  const [heroCtaPassed, setHeroCtaPassed] = useState(false);
   const [consultationVisible, setConsultationVisible] = useState(false);
 
   useEffect(() => {
@@ -12,12 +12,12 @@ export function MobileStickyCta() {
     const consultation = document.getElementById("consultation");
 
     const heroObserver = new IntersectionObserver(
-      ([entry]) => setHeroCtaVisible(entry.isIntersecting),
-      { threshold: 0.2 },
+      ([entry]) => setHeroCtaPassed(!entry.isIntersecting && entry.boundingClientRect.bottom <= 72),
+      { threshold: 0, rootMargin: "-72px 0px 0px 0px" },
     );
     const consultationObserver = new IntersectionObserver(
       ([entry]) => setConsultationVisible(entry.isIntersecting),
-      { threshold: 0.08 },
+      { threshold: 0 },
     );
 
     if (heroCta) heroObserver.observe(heroCta);
@@ -29,7 +29,7 @@ export function MobileStickyCta() {
     };
   }, []);
 
-  const visible = !heroCtaVisible && !consultationVisible;
+  const visible = heroCtaPassed && !consultationVisible;
 
   return (
     <a

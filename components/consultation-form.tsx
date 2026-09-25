@@ -87,7 +87,7 @@ export function ConsultationForm() {
   }
 
   return (
-    <form className="audit-form" onSubmit={submit}>
+    <form className="audit-form" onSubmit={submit} aria-label="Free consultation booking">
       <input className="form-trap" name="companyWebsite" value={formData.companyWebsite} onChange={update} tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <div className="form-head">
         <div><span className="form-kicker">Free consultation</span><h3>{step === 1 ? "Tell us about your pipeline" : step === 2 ? "Choose a time" : "Your details"}</h3></div>
@@ -106,9 +106,8 @@ export function ConsultationForm() {
           <label>What is one new customer approximately worth?
             <select name="customerValue" required value={formData.customerValue} onChange={update}><option value="" disabled>Select a range</option><option>Under €500</option><option>€500–€1,999</option><option>€2,000–€4,999</option><option>€5,000–€9,999</option><option>€10,000+</option></select>
           </label>
-          <button className="button button-dark form-button" type="button" onClick={() => {
-            const form = document.querySelector(".audit-form") as HTMLFormElement;
-            if (form.reportValidity()) setStep(2);
+          <button className="button button-dark form-button" type="button" onClick={(event) => {
+            if (event.currentTarget.form?.reportValidity()) setStep(2);
           }}>Continue to booking <ArrowRight size={18}/></button>
         </div>
       ) : step === 2 ? (
@@ -124,7 +123,7 @@ export function ConsultationForm() {
               {availableDates.map((date) => {
                 const value = new Date(`${date}T12:00:00`);
                 return (
-                  <button className={selectedDate === date ? "date-option selected" : "date-option"} type="button" key={date} onClick={() => {
+                  <button className={selectedDate === date ? "date-option selected" : "date-option"} type="button" key={date} aria-pressed={selectedDate === date} aria-label={value.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" })} onClick={() => {
                     setSelectedDate(date);
                     setSelectedTime("");
                     setFormData((current) => ({ ...current, preferredTime: "" }));
@@ -141,7 +140,7 @@ export function ConsultationForm() {
           <div className={selectedDate ? "time-picker visible" : "time-picker"}>
             <div className="picker-heading"><Clock3 size={19}/><strong>{selectedDate ? new Date(`${selectedDate}T12:00:00`).toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" }) : "Select a date first"}</strong></div>
             {selectedDate && <div className="time-grid">{timeSlots.map((time) => (
-              <button className={selectedTime === time ? "time-option selected" : "time-option"} type="button" key={time} onClick={() => {
+              <button className={selectedTime === time ? "time-option selected" : "time-option"} type="button" key={time} aria-pressed={selectedTime === time} onClick={() => {
                 setSelectedTime(time);
                 setFormData((current) => ({ ...current, preferredTime: `${selectedDate}T${time}` }));
               }}>{time}</button>
